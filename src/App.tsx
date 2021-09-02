@@ -5,6 +5,7 @@ import { NewTransactionModal } from './components/NewTransactionModal'
 import { GlobalStyle } from './styles/global';
 import Modal from 'react-modal'
 import { useState } from 'react';
+import { TransactionProvider } from './hooks/useTransactions';
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
@@ -19,8 +20,9 @@ export function App() {
   function handleOpenCloseTransactionModal() {
     setIsNerwTransactionModalOpen(false)
   }
+
   return (
-    <>
+    <TransactionProvider>
       <Header onOpenNewTransactionModal={handleOpenNewTransactionModal}></Header>
       <Dashboard></Dashboard>
       <NewTransactionModal
@@ -29,6 +31,6 @@ export function App() {
 
       <TransactionsTable></TransactionsTable>
       <GlobalStyle />
-    </>
+    </TransactionProvider>
   );
 };
